@@ -79,7 +79,6 @@ const HomepageLayout = () => (
         <Button as="a" size="large">
           Read More
         </Button>
-
         <Divider
           as="h4"
           className="header"
@@ -88,7 +87,6 @@ const HomepageLayout = () => (
         >
           <a href="#">Case Studies</a>
         </Divider>
-
         <Header as="h3" style={{ fontSize: '2em' }}>
           Did We Tell You About Our Bananas?
         </Header>
