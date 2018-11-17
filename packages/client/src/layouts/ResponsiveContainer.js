@@ -13,9 +13,15 @@ import {
   Sidebar,
   Visibility,
 } from 'semantic-ui-react';
+import { Link, withRouter } from 'react-router-dom';
 
 
 class DesktopContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.props = props;
+  }
+
   state = {};
 
   hideFixedMenu = () => this.setState({ fixed: false });
@@ -23,9 +29,8 @@ class DesktopContainer extends Component {
   showFixedMenu = () => this.setState({ fixed: true });
 
   render() {
-    const { children } = this.props;
+    const { children, location: { pathname } } = this.props;
     const { fixed } = this.state;
-
     return (
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
         <Visibility
@@ -46,11 +51,11 @@ class DesktopContainer extends Component {
               size="large"
             >
               <Container>
-                <Menu.Item as="a" active>
+                <Menu.Item as={Link} to="/" active={pathname === '/'}>
                   Home
                 </Menu.Item>
-                <Menu.Item as="a">Work</Menu.Item>
-                <Menu.Item as="a">Company</Menu.Item>
+                <Menu.Item as={Link} to="/donate" active={pathname === '/donate'}>Payments</Menu.Item>
+                <Menu.Item as="a">Account</Menu.Item>
                 <Menu.Item as="a">Careers</Menu.Item>
                 <Menu.Item position="right">
                 </Menu.Item>
@@ -66,7 +71,7 @@ class DesktopContainer extends Component {
                 <Grid.Column width={3}>
                   <Header inverted as="h4" content="About" />
                   <List link inverted>
-                    <List.Item as="a">Sitemap</List.Item>
+                    <List.Item>Sitemap</List.Item>
                     <List.Item as="a">Contact Us</List.Item>
                     <List.Item as="a">Religious Ceremonies</List.Item>
                     <List.Item as="a">Gazebo Plans</List.Item>
@@ -204,10 +209,10 @@ MobileContainer.propTypes = {
   children: PropTypes.node,
 };
 
-const ResponsiveContainer = ({ children }) => (
+const ResponsiveContainer = ({ children, ...props }) => (
   <div>
-    <DesktopContainer>{children}</DesktopContainer>
-    <MobileContainer>{children}</MobileContainer>
+    <DesktopContainer {...props}>{children}</DesktopContainer>
+    <MobileContainer {...props}>{children}</MobileContainer>
   </div>
 );
 
@@ -215,4 +220,4 @@ ResponsiveContainer.propTypes = {
   children: PropTypes.node,
 };
 
-export default ResponsiveContainer;
+export default withRouter(ResponsiveContainer);

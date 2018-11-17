@@ -8,18 +8,20 @@ import './App.css';
 import 'semantic-ui-css/semantic.min.css';
 import ResponsiveContainer from './layouts/ResponsiveContainer';
 import HomepageLayout from './pages/Home';
+import PaymentPool from './pages/paymentPool';
 
 
 class App extends Component {
   render() {
     return (
-      <ResponsiveContainer>
-        <BrowserRouter>
+      <BrowserRouter>
+        <ResponsiveContainer>
           <Switch>
-            <Route exact path="/" component={HomepageLayout} />
+            <Route exact path="/" component={HomepageLayout}/>
+            <Route path="/donate" component={PaymentPool}/>
           </Switch>
-        </BrowserRouter>
-      </ResponsiveContainer>
+        </ResponsiveContainer>
+      </BrowserRouter>
     );
   }
 }
