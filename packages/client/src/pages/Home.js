@@ -5,6 +5,7 @@ import {
   Divider,
   Grid,
   Header,
+  Icon,
   Image,
   List,
   Segment,
@@ -12,6 +13,20 @@ import {
 
 const HomepageLayout = () => (
   <>
+    <Container text style={{ textAlign: 'center', paddingTop: '40px' }}>
+      <Header
+        as="h1"
+        content="Imagine-a-Company"
+      />
+      <Header
+        as="h2"
+        content="Do whatever you want when you want to."
+      />
+      <Button primary size="huge">
+        Get Started
+        <Icon name="right arrow" />
+      </Button>
+    </Container>
     <Segment style={{ padding: '8em 0em' }} vertical>
       <Grid container stackable verticalAlign="middle">
         <Grid.Row>
