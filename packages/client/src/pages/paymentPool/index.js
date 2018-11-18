@@ -3,7 +3,6 @@ import {
   Button,
   Container,
   Divider,
-  Dropdown,
   Grid,
   Header,
   Icon,
@@ -22,14 +21,15 @@ class PaymentPool extends Component {
     this.handleOrgChange = this.handleOrgChange.bind(this);
     this.TransferFunds = this.TransferFunds.bind(this);
     this.state = {
-      CAD: '',
+      CAD: 0,
       ORG: '',
       err: false,
+      numerr: false,
     };
   }
 
-  handleCadChange(text) {
-    this.setState({ CAD: text.value });
+  handleCadChange(event, data) {
+    this.setState({ CAD: data.value });
   }
 
   handleOrgChange(event, data) {
@@ -51,14 +51,55 @@ class PaymentPool extends Component {
   async TransferFunds() {
     const org = await charityDB.getOrganizationByName(this.state.ORG)
       .then((response) => {
-        console(response);
-        return null;
+        return response;
       })
       .catch((err) => {
-        this.setState({ err: true });
-        return err;
+        return charityDB.getOrganization(this.state.ORG)
+          .then((response) => {
+            return response;
+          })
+          .catch((err2) => {
+            this.setState({ err: true });
+            return err2;
+          });
       });
+    const isnum = /^\d+$/.test(this.state.CAD);
     console.log(org);
+    if (!isnum) {
+      this.setState({ numerr: true });
+    }
+    if (!isnum && !this.state.err) {
+      console.log('send money');
+    }
+  }
+
+  RenderError() {
+    if (this.state.err && this.state.numerr) {
+      return (
+        <p>
+          Unfortunately we were unable to find that charity please
+          checking spelling and or that you entered the correct
+          hash as well please enter a valid dollar amount!
+        </p>
+      );
+    }
+    if (this.state.err) {
+      return (
+        <p>
+          Unfortunately we were unable to find that charity please
+          checking spelling and or that you entered the correct
+          hash!
+        </p>
+      );
+    }
+    if (this.state.numerr) {
+      return (
+        <p>
+          PLease enter a valid dollar amount!
+        </p>
+      );
+    }
+    return null;
   }
 
   render() {
@@ -88,22 +129,17 @@ class PaymentPool extends Component {
             <Grid columns={2} divided>
               <Grid.Row>
                 <Grid.Column>
-                  <Dropdown
-                    button
-                    className="icon"
-                    floating
+                  <Input
                     fluid
-                    labeled
                     icon="handshake"
                     value={this.state.ORG}
                     onChange={this.handleOrgChange}
                     options={organizations}
-                    search
                     placeholder="Select Organization"
                   />
                 </Grid.Column>
                 <Grid.Column>
-                  <Input labelPosition="right" type="text" placeholder="Amount" fluid onChange={this.handleCadChange} value={this.state.CAD}>
+                  <Input labelPosition="right" type="number" placeholder="Amount" fluid onChange={this.handleCadChange} value={this.state.CAD}>
                     <Label basic>$</Label>
                     <input />
                     <Label>.00</Label>
@@ -120,13 +156,10 @@ class PaymentPool extends Component {
             </Grid>
           </Container>
         </Segment>
-        <Modal open={this.state.err} basic size="small">
+        <Modal open={this.state.err || this.state.numerr} basic size="small">
           <Header icon="frown" content="OOPS Something Went Wrong!" />
           <Modal.Content>
-            <p>
-              Unfortunately we were unable to find that charity please
-              checking spelling and or that you entered the correct hash
-            </p>
+            {this.RenderError()}
           </Modal.Content>
           <Modal.Actions>
             <Button color="green" inverted onClick={() => this.setState({ err: false })}>

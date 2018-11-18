@@ -13,6 +13,7 @@ import PaymentPool from './pages/paymentPool';
 import TransactionHistory from './pages/TransactionHistory';
 import TransferFounds from './pages/TransferFounds';
 import Myfunds from './pages/myFunds';
+import MetaMaskLoading from './pages/MetaMaskLoading';
 
 function App() {
   const [isLoaded, setLoaded] = useState(false);
@@ -27,8 +28,6 @@ function App() {
       ethwrapper.load().then(() => setLoaded(true)).catch(setErrored);
     }
   });
-
-  console.log('rendering App');
 
   if (isErrored) {
     return (
@@ -50,7 +49,12 @@ function App() {
               <Route path="/myFunds" component={Myfunds} />
             </Switch>
           )
-          : 'Loading...'}
+          : (
+            <Switch>
+              <Route exact path="/" component={HomepageLayout} />
+              <Route path="/donate" component={MetaMaskLoading} />
+              <Route path="/account" component={MetaMaskLoading} />
+            </Switch>)}
       </ResponsiveContainer>
     </BrowserRouter>
   );

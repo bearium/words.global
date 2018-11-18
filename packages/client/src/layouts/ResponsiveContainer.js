@@ -55,7 +55,6 @@ class DesktopContainer extends Component {
                 </Menu.Item>
                 <Menu.Item as={Link} to="/donate" active={pathname === '/donate'}>Payments</Menu.Item>
                 <Menu.Item as={Link} to="/account" active={pathname === '/account'}>Account</Menu.Item>
-                <Menu.Item as="a">Careers</Menu.Item>
                 <Menu.Item position="right">
                 </Menu.Item>
               </Container>
@@ -122,19 +121,20 @@ class MobileContainer extends Component {
   handleToggle = () => this.setState({ sidebarOpened: !this.state.sidebarOpened });
 
   render() {
-    const { children } = this.props;
+    const { children, location: { pathname } } = this.props;
     const { sidebarOpened } = this.state;
 
     return (
       <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
         <Sidebar.Pushable>
           <Sidebar as={Menu} animation="uncover" inverted vertical visible={sidebarOpened}>
-            <Menu.Item as="a" active>
+            <Menu.Item as={Link} to="/" active={pathname === '/'}>
               Home
             </Menu.Item>
-            <Menu.Item as="a">Work</Menu.Item>
-            <Menu.Item as="a">Company</Menu.Item>
-            <Menu.Item as="a">Careers</Menu.Item>
+            <Menu.Item as={Link} to="/donate" active={pathname === '/donate'}>Payments</Menu.Item>
+            <Menu.Item as={Link} to="/account" active={pathname === '/account'}>Account</Menu.Item>
+            <Menu.Item position="right">
+            </Menu.Item>
           </Sidebar>
 
           <Sidebar.Pusher
