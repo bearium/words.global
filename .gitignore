@@ -37,7 +37,7 @@ node_modules/
 jspm_packages/
 
 # package-lock
-packages/client/package-lock.json
+**/package-lock.json
 
 # TypeScript v1 declaration files
 typings/

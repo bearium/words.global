@@ -108,10 +108,92 @@ class TransactionHistory extends Component {
         </Grid>
       </Container>
     );
+    const foodPane = (
+      <Container>
+        <Header>
+          Total Donation: $60
+        </Header>
+        <Grid columns={2}>
+          <Grid.Row>
+            <Grid.Column columns={1}>
+              <Label>
+                <Icon name="user" size="large" />
+                <span className="font-weight: bolder;">You have helped this many people: </span>
+                <span className="font-weight: lighter;">10</span>
+              </Label>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+        <Grid columns={1} style={{ textAlign: 'center' }}>
+          <Grid.Row>
+            <Grid.Column>
+              <Grid>
+                <Grid.Row centered>
+                  <Grid.Column width={9}>
+                    <div>
+                      <CircularProgressbar
+                        percentage={60}
+                        text="60%"
+                      />
+                    </div>
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row centered>
+                  <Grid.Column width={10}>
+                    <p style={{ textAlign: 'center' }}>Thanks for your generous donations!</p>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Container>
+    );
+    const housePane = (
+      <Container>
+        <Header>
+          Total Donation: $40
+        </Header>
+        <Grid columns={2}>
+          <Grid.Row>
+            <Grid.Column columns={1}>
+              <Label>
+                <Icon name="user" size="large" />
+                <span className="font-weight: bolder;">You have helped this many people: </span>
+                <span className="font-weight: lighter;">10</span>
+              </Label>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+        <Grid columns={1} style={{ textAlign: 'center' }}>
+          <Grid.Row>
+            <Grid.Column>
+              <Grid>
+                <Grid.Row centered>
+                  <Grid.Column width={9}>
+                    <div>
+                      <CircularProgressbar
+                        percentage={40}
+                        text="40%"
+                      />
+                    </div>
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row centered>
+                  <Grid.Column width={10}>
+                    <p style={{ textAlign: 'center' }}>Thanks for your generous donations!</p>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Container>
+    );
     const panes = [
       { menuItem: 'Total', render: () => <Tab.Pane>{tempPane}</Tab.Pane> },
-      { menuItem: 'Food', render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
-      { menuItem: 'Housing', render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> },
+      { menuItem: 'Food', render: () => <Tab.Pane>{foodPane}</Tab.Pane> },
+      { menuItem: 'Housing', render: () => <Tab.Pane>{housePane}</Tab.Pane> },
     ];
 
     return (

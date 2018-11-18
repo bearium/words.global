@@ -2,6 +2,10 @@
 # words.global
 MonoRepo
 
+REQUIRES
+=======
+METAMASK Browser Extension
+
 INSTALL
 =======
 
