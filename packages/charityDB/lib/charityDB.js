@@ -1,6 +1,6 @@
 'use strict';
 
-const contractAddress = "0x6B9B895Ce81bE8edd717867AB6772194073a95a7";
+const contractAddress = "0x4e7d5433f5353a1e8e39f46ee68fd10fa4936a64";
 const contractABI = [
 	{
 		"constant": true,
@@ -19,32 +19,6 @@ const contractABI = [
 		],
 		"payable": false,
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "t",
-				"type": "uint8"
-			},
-			{
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"name": "fullName",
-				"type": "string"
-			},
-			{
-				"name": "otherData",
-				"type": "uint256"
-			}
-		],
-		"name": "register",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -125,10 +99,6 @@ const contractABI = [
 			},
 			{
 				"name": "",
-				"type": "string"
-			},
-			{
-				"name": "",
 				"type": "uint8"
 			},
 			{
@@ -182,10 +152,6 @@ const contractABI = [
 		"constant": false,
 		"inputs": [
 			{
-				"name": "user",
-				"type": "address"
-			},
-			{
 				"name": "t",
 				"type": "uint8"
 			},
@@ -194,15 +160,11 @@ const contractABI = [
 				"type": "string"
 			},
 			{
-				"name": "fullName",
-				"type": "string"
-			},
-			{
 				"name": "otherData",
 				"type": "uint256"
 			}
 		],
-		"name": "registerOther",
+		"name": "register",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -232,10 +194,6 @@ const contractABI = [
 			},
 			{
 				"name": "",
-				"type": "string"
-			},
-			{
-				"name": "",
 				"type": "uint8"
 			},
 			{
@@ -245,6 +203,32 @@ const contractABI = [
 		],
 		"payable": false,
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "user",
+				"type": "address"
+			},
+			{
+				"name": "t",
+				"type": "uint8"
+			},
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "otherData",
+				"type": "uint256"
+			}
+		],
+		"name": "registerOther",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -289,8 +273,13 @@ const contractABI = [
 		],
 		"name": "onRegistered",
 		"type": "event"
+<<<<<<< Updated upstream
 	},
 ]
+=======
+	}
+];
+>>>>>>> Stashed changes
 
 class EthWrapperError extends Error{
 	constructor(msg){
