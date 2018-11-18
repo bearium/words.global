@@ -273,13 +273,8 @@ const contractABI = [
 		],
 		"name": "onRegistered",
 		"type": "event"
-<<<<<<< Updated upstream
-	},
-]
-=======
 	}
 ];
->>>>>>> Stashed changes
 
 class EthWrapperError extends Error{
 	constructor(msg){
