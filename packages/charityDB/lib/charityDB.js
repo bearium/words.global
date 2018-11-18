@@ -289,7 +289,7 @@ const contractABI = [
 		],
 		"name": "onRegistered",
 		"type": "event"
-	}
+	},
 ]
 
 class EthWrapperError extends Error{
@@ -400,9 +400,9 @@ let EthWrapper = {
 					reject(err);
 				} else {
 					resolve({
-						address: result[0], 
+						address: result[0],
 						submitter: result[1],
-						name: result[2], 
+						name: result[2],
 						fullName: result[3],
 						type: result[4],
 						otherData: result[5]
@@ -419,9 +419,9 @@ let EthWrapper = {
 					reject(err);
 				} else {
 					resolve({
-						address: result[0], 
+						address: result[0],
 						submitter: result[1],
-						name: result[2], 
+						name: result[2],
 						fullName: result[3],
 						type: result[4],
 						otherData: result[5]
@@ -445,7 +445,7 @@ let EthWrapper = {
 	register(type, name, fullName, otherData){
 		assert(loaded, "Not Loaded");
 		return new Promise((resolve, reject) => {
-			theCouncil.vouchForUser(type, name, fullName, otherData,(err, txHash) => {
+			theCouncil.register(type, name, fullName, otherData,(err, txHash) => {
 				if (err) {
 					reject(err);
 				} else {
@@ -458,7 +458,7 @@ let EthWrapper = {
 	registerOther(address, type, name, fullName, otherData){
 		assert(loaded, "Not Loaded");
 		return new Promise((resolve, reject) => {
-			theCouncil.vouchForUser(address, type, name, fullName, otherData,(err, txHash) => {
+			theCouncil.registerOther(address, type, name, fullName, otherData,(err, txHash) => {
 				if (err) {
 					reject(err);
 				} else {
