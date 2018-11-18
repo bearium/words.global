@@ -8,8 +8,12 @@ import {
   Input,
   Segment,
 } from 'semantic-ui-react';
+import charityDB from 'charitydb/lib/charityDB';
+import charityFinances from 'charityfinances/lib/charityFinances';
+
 
 class PaymentPool extends Component {
+
   constructor(props) {
     super(props);
     this.cryptoRound = this.cryptoRound.bind(this);
@@ -18,6 +22,8 @@ class PaymentPool extends Component {
     this.state = {
       CAD: '',
       ORG: '',
+      user: '',
+      totalShares: '',
     };
   }
 
@@ -27,6 +33,11 @@ class PaymentPool extends Component {
 
   handleOrgChange(event, data) {
     this.setState({ ORG: data.value });
+  }
+
+  updateUserStates() {
+    this.setState({ user: charityDB.getCurrentAccount() });
+    this.setState({ totalShares: charityFinances.totalShares(charityDB.getCurrentAccount()) });
   }
 
   async cryptoRound() {
@@ -42,6 +53,7 @@ class PaymentPool extends Component {
   }
 
   render() {
+    console.log(this.state.totalShares);
     return (
       <>
         <Segment vertical>
@@ -50,10 +62,10 @@ class PaymentPool extends Component {
               Share Allocation
             </Header>
             <p style={{ fontSize: '1.33em' }}>
-              Shares Allocated: 120
+              Shares Allocated: {this.state.totalShares}
             </p>
             <p style={{ fontSize: '1.33em' }}>
-              Shares Worth: 120
+              Shares Worth: $1
             </p>
             <p style={{ fontSize: '1.00em' }}>
               Please double check before allocating any funds.

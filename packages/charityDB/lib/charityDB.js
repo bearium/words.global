@@ -398,7 +398,7 @@ let EthWrapper = {
 	getOrganizationByName(name) {
 		assert(loaded, "Not Loaded");
 		return new Promise((resolve, reject) => {
-			theCouncil.getOrganization(name,(err, result) => {
+			theCouncil.getOrganizationByName(name,(err, result) => {
 				if (err) {
 					reject(err);
 				} else {

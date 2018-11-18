@@ -27,7 +27,6 @@ function App() {
       ethwrapperTransactions.load().then(() => setLoaded(true)).catch(setErrored);
     }
   });
-
   return (
     <BrowserRouter>
       <ResponsiveContainer>
@@ -35,7 +34,7 @@ function App() {
           ? (
             <Switch>
               <Route exact path="/" component={HomepageLayout} />
-              <Route path="/donate" component={PaymentPool} />
+              <Route props={ethwrapper.getCurrentAccount()} path="/donate" component={PaymentPool} />
               <Route path="/account" component={TransactionHistory} />
               <Route path="/transfer" component={TransferFounds} />
               <Route path="/myFunds" component={Myfunds} />

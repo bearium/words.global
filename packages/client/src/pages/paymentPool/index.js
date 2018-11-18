@@ -59,27 +59,29 @@ class PaymentPool extends Component {
     if (!this.state.numerr) {
 
       const eth = this.state.CAD * convertion.ETH;
-      console.log(eth);
-      charityDB.getOrganizationByName(this.state.ORG)
-        .then(() => {
-          return charityFinances.donateByName(this.state.ORG,eth)
-            .catch((err1) => {
-              return err1;
-            });
-        })
-        .catch(() => {
-          return charityDB.getOrganization(this.state.ORG)
-            .then(() => {
-              return charityFinances.donateByName(this.state.ORG,eth)
-                .catch((err1) => {
-                  return err1;
-                });
-            })
-            .catch((err2) => {
-              this.setState({ err: true });
-              return err2;
-            });
-        });
+      const bigNum = charityFinances.getBigNumberConstructor();
+      const wei = new bigNum(eth.toFixed(15)).times(1e18);
+      let byName;
+      try {
+        if ((await charityDB.getOrganizationByName(this.state.ORG)).type.eq(0)){
+          throw new Error("");
+        }
+        byName = true;
+      } catch (e) {
+        await charityDB.getOrganization(this.state.ORG);
+        byName = false;
+      }
+      if (byName) {
+        console.log("name");
+        charityFinances.donateByName(this.state.ORG, wei);
+      }
+      else if (byName === false) {
+        console.log("addrs");
+        charityFinances.donateByAddress(this.state.ORG, wei);
+      }
+      else if (typeof byname === 'undefined') {
+        this.setState({ err: false });
+      }
     }
     return null;
   }
