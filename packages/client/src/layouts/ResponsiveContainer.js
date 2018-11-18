@@ -72,27 +72,26 @@ class DesktopContainer extends Component {
                   <Header inverted as="h4" content="About" />
                   <List link inverted>
                     <List.Item>Sitemap</List.Item>
-                    <List.Item as="a">Contact Us</List.Item>
-                    <List.Item as="a">Religious Ceremonies</List.Item>
-                    <List.Item as="a">Gazebo Plans</List.Item>
+                    <List.Item as="a" href="http://www.unhcr.org/get-involved.html">Contact Us</List.Item>
+                    <List.Item as="a" href="http://www.unhcr.org/who-we-help.html">Who We Help</List.Item>
+                    <List.Item as="a" href="http://www.unhcr.org/figures-at-a-glance.html">Figures at a Glance</List.Item>
                   </List>
                 </Grid.Column>
                 <Grid.Column width={3}>
                   <Header inverted as="h4" content="Services" />
                   <List link inverted>
-                    <List.Item as="a">Banana Pre-Order</List.Item>
-                    <List.Item as="a">DNA FAQ</List.Item>
-                    <List.Item as="a">How To Access</List.Item>
-                    <List.Item as="a">Favorite X-Men</List.Item>
+                    <List.Item as="a" href="http://www.unhcr.org/asylum-seekers.html">Asylum-seekers</List.Item>
+                    <List.Item as="a" href="http://www.unhcr.org/refugees.html">Refugees</List.Item>
+                    <List.Item as="a" href="http://www.unhcr.org/stateless-people.html">Stateless People</List.Item>
+                    <List.Item as="a" href="http://www.unhcr.org/safeguarding-individuals.html">Safeguarding Individuals</List.Item>
                   </List>
                 </Grid.Column>
                 <Grid.Column width={7}>
                   <Header as="h4" inverted>
-                    Footer Header
+                    Donate
                   </Header>
                   <p>
-                    Extra space for a call to action inside the
-                    footer that could help re-engage users.
+                    Donating money is an easy and trackable process. You can give any amount and all of it will go straight to helping people who are really in need. We make sure your donations goes to right places.
                   </p>
                 </Grid.Column>
               </Grid.Row>
@@ -164,27 +163,26 @@ class MobileContainer extends Component {
                       <Header inverted as="h4" content="About" />
                       <List link inverted>
                         <List.Item as="a">Sitemap</List.Item>
-                        <List.Item as="a">Contact Us</List.Item>
-                        <List.Item as="a">Religious Ceremonies</List.Item>
-                        <List.Item as="a">Gazebo Plans</List.Item>
+                        <List.Item as="a" href="http://www.unhcr.org/get-involved.html">Contact Us</List.Item>
+                        <List.Item as="a" href="http://www.unhcr.org/who-we-help.html">Who We Help</List.Item>
+                        <List.Item as="a" href="http://www.unhcr.org/figures-at-a-glance.html">Figures at a Glance</List.Item>
                       </List>
                     </Grid.Column>
                     <Grid.Column width={3}>
                       <Header inverted as="h4" content="Services" />
                       <List link inverted>
-                        <List.Item as="a">Banana Pre-Order</List.Item>
-                        <List.Item as="a">DNA FAQ</List.Item>
-                        <List.Item as="a">How To Access</List.Item>
-                        <List.Item as="a">Favorite X-Men</List.Item>
+                        <List.Item as="a" href="http://www.unhcr.org/asylum-seekers.html">Asylum-seekers</List.Item>
+                        <List.Item as="a" href="http://www.unhcr.org/refugees.html">Refugees</List.Item>
+                        <List.Item as="a" href="http://www.unhcr.org/stateless-people.html">Stateless People</List.Item>
+                        <List.Item as="a" href="http://www.unhcr.org/safeguarding-individuals.html">Safeguarding Individuals</List.Item>
                       </List>
                     </Grid.Column>
                     <Grid.Column width={7}>
                       <Header as="h4" inverted>
-                        Footer Header
+                        Donate
                       </Header>
                       <p>
-                        Extra space for a call to action inside the
-                        footer that could help re-engage users.
+                        Donating money is an easy and trackable process. You can give any amount and all of it will go straight to helping people who are really in need. We make sure your donations goes to right places.
                       </p>
                     </Grid.Column>
                   </Grid.Row>

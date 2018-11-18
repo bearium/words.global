@@ -15,7 +15,7 @@ import 'react-circular-progressbar/dist/styles.css';
 class TransactionHistory extends Component {
   constructor(props) {
     super(props);
-    this.refugee = 2900000;
+    this.refugee = 2500000;
     this.food = 400;
     this.housing = 300;
     this.education = 200;
