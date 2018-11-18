@@ -15,6 +15,7 @@ export default class Details extends React.Component {
       name: '',
       profile: undefined,
       type: -1,
+      address: props.match.params.address,
     };
   }
 
@@ -31,7 +32,7 @@ export default class Details extends React.Component {
     console.timeEnd('why');
 
     console.log('before setState', profile);
-    this.setState({ profile });
+    this.setState({ profile, address });
   }
 
   componentDidMount() {
@@ -41,6 +42,8 @@ export default class Details extends React.Component {
   componentDidUpdate(prevState, prevProps) {
     if (typeof this.state.profile === 'undefined') {
       this.updateProfile();
+    } else if (this.props.match.params.address !== this.state.address) {
+      this.updateProfile()
     }
   }
 
