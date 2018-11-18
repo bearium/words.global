@@ -16,7 +16,7 @@ import organizationTypes from '../organizationTypes';
 
 const validators = {
   name: ethw.validateName,
-
+  type: (type) => type === 1 || type === 2,
 };
 
 export default class Edit extends React.Component {
@@ -26,7 +26,6 @@ export default class Edit extends React.Component {
     super(props);
     this.state = {
       name: '',
-      fullName: '',
       type: -1,
       to: undefined,
       error: undefined,
@@ -52,7 +51,7 @@ export default class Edit extends React.Component {
   }
 
   async saveProfile() {
-    const { name, fullName, type } = this.state;
+    const { name, type } = this.state;
     const otherData = 0;
 
     this.setState({
@@ -61,7 +60,7 @@ export default class Edit extends React.Component {
     });
 
     try {
-      await ethw.register(type, name, fullName, otherData);
+      await ethw.register(type, name, otherData);
       this.setState({
         saved: true,
         loading: false,
@@ -80,7 +79,6 @@ export default class Edit extends React.Component {
     const {
       error,
       name,
-      fullName,
       loading,
       type,
       saved,
@@ -108,14 +106,6 @@ export default class Edit extends React.Component {
             onChange={this.setStateField}
             placeholder="Short organization name"
             value={name}
-          />
-          <Form.Field
-            label="Full Name"
-            name="fullName"
-            control={Input}
-            onChange={this.setStateField}
-            placeholder="Full organization name"
-            value={fullName}
           />
           <Form.Field>
             <label>
@@ -158,6 +148,13 @@ export default class Edit extends React.Component {
             error
             header="Something went wrong"
             content={error.message}
+          />
+        }
+        {saved &&
+          <Message
+            success
+            header="Successfully updated information"
+            content="It may take several minutes for your changes to take effect"
           />
         }
         <h2 style={{ wordWrap: 'break-word' }}>{address}</h2>

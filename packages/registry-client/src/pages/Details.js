@@ -13,7 +13,6 @@ export default class Details extends React.Component {
     super(props);
     this.state = {
       name: '',
-      fullName: '',
       type: -1,
     };
   }
@@ -39,7 +38,7 @@ export default class Details extends React.Component {
   }
 
   render() {
-    const { name, fullName, type } = this.state;
+    const { name, type } = this.state;
     const { match: { params: { address } } } = this.props;
 
     let content;
@@ -72,15 +71,6 @@ export default class Details extends React.Component {
               </List.Header>
               <List.Description>
                 {name || <em>Not entered</em>}
-              </List.Description>
-            </List.Item>
-            <Divider hidden />
-            <List.Item>
-              <List.Header as="strong">
-                Full Name
-              </List.Header>
-              <List.Description>
-                {fullName || <em>Not entered</em>}
               </List.Description>
             </List.Item>
             <Divider hidden />
