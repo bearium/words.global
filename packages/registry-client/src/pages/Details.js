@@ -1,22 +1,45 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { List, Dimmer, Loader } from 'semantic-ui-react';
+import ethw from 'charitydb';
 
-import ProfileContext from '../contexts/ProfileContext';
+import AddressContext from '../contexts/AddressContext';
+import typeToString from '../helpers/typeToString';
 
 export default class Details extends React.Component {
-  static contextType = ProfileContext;
+  static contextType = AddressContext;
 
   constructor(props) {
     super(props);
     this.state = {
-      name: 'hullo',
-      category: 'org',
+      name: '',
+      fullName: '',
+      type: -1,
     };
   }
 
+  async updateProfile() {
+    if (typeof this.context === 'undefined') {
+      return;
+    }
+
+    const { match: { params: { address } } } = this.props;
+
+    this.setState({
+      profile: await ethw.getOrganization(address),
+    });
+  }
+
+  componentDidMount() {
+    this.updateProfile();
+  }
+
+  componentDidUpdate() {
+    this.updateProfile();
+  }
+
   render() {
-    const { name, category } = this.state;
+    const { name, fullName, type } = this.state;
     const { match: { params: { address } } } = this.props;
 
     let content;
@@ -30,7 +53,7 @@ export default class Details extends React.Component {
     else {
       content = (
         <>
-          {address === this.context.address && (
+          {address === this.context && (
             <Link to={`/${address}/edit`}>Edit</Link>
           )}
           <List size="massive">
@@ -38,7 +61,7 @@ export default class Details extends React.Component {
               <List.Header as="strong">
                 Address
               </List.Header>
-              <List.Description>
+              <List.Description style={{ wordWrap: 'break-word' }}>
                 {address}
               </List.Description>
             </List.Item>
@@ -47,15 +70,23 @@ export default class Details extends React.Component {
                 Name
               </List.Header>
               <List.Description>
-                {name}
+                {name || <em>Not entered</em>}
               </List.Description>
             </List.Item>
             <List.Item>
               <List.Header as="strong">
-                Category
+                Full Name
               </List.Header>
               <List.Description>
-                {category}
+                {fullName || <em>Not entered</em>}
+              </List.Description>
+            </List.Item>
+            <List.Item>
+              <List.Header as="strong">
+                Type
+              </List.Header>
+              <List.Description>
+                {typeToString(type) || <em>Not entered</em>}
               </List.Description>
             </List.Item>
           </List>

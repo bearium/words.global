@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Container, Divider, Header, Icon } from 'semantic-ui-react';
 
-import ProfileContext from '../contexts/ProfileContext';
+import AddressContext from '../contexts/AddressContext';
 
 export default class Layout extends React.Component {
-  static contextType = ProfileContext;
+  static contextType = AddressContext;
 
   render() {
     const { children } = this.props;
@@ -18,7 +18,7 @@ export default class Layout extends React.Component {
           <Link to={this.context ? `/${this.context}/edit` : ''}>
             <Button
               basic
-              nimated
+              animated
               compact
               loading={loading}
               floated="right"
