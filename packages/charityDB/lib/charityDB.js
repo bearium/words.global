@@ -1,6 +1,6 @@
 'use strict';
 
-const contractAddress = "0xc785a091cae8675e4b7a8cedbc6cd67bbf2e14a0";
+const contractAddress = "0x6B9B895Ce81bE8edd717867AB6772194073a95a7";
 const contractABI = [
 	{
 		"constant": true,
@@ -19,25 +19,6 @@ const contractABI = [
 		],
 		"payable": false,
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "b",
-				"type": "bytes32"
-			}
-		],
-		"name": "bytes32ToBytes",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bytes"
-			}
-		],
-		"payable": false,
-		"stateMutability": "pure",
 		"type": "function"
 	},
 	{
@@ -140,11 +121,11 @@ const contractABI = [
 			},
 			{
 				"name": "",
-				"type": "bytes32"
+				"type": "string"
 			},
 			{
 				"name": "",
-				"type": "bytes32[4]"
+				"type": "string"
 			},
 			{
 				"name": "",
@@ -163,19 +144,19 @@ const contractABI = [
 		"constant": true,
 		"inputs": [
 			{
-				"name": "b",
-				"type": "bytes32[4]"
+				"name": "name",
+				"type": "string"
 			}
 		],
-		"name": "bytes128ToBytes",
+		"name": "getOrganizationAddressByName",
 		"outputs": [
 			{
 				"name": "",
-				"type": "bytes"
+				"type": "address"
 			}
 		],
 		"payable": false,
-		"stateMutability": "pure",
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -231,25 +212,6 @@ const contractABI = [
 		"constant": true,
 		"inputs": [
 			{
-				"name": "b",
-				"type": "bytes"
-			}
-		],
-		"name": "bytesToBytes32",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"payable": false,
-		"stateMutability": "pure",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
 				"name": "addr",
 				"type": "address"
 			}
@@ -266,11 +228,11 @@ const contractABI = [
 			},
 			{
 				"name": "",
-				"type": "bytes32"
+				"type": "string"
 			},
 			{
 				"name": "",
-				"type": "bytes32[4]"
+				"type": "string"
 			},
 			{
 				"name": "",
@@ -283,25 +245,6 @@ const contractABI = [
 		],
 		"payable": false,
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "b",
-				"type": "bytes"
-			}
-		],
-		"name": "bytesToBytes128",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bytes32[4]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "pure",
 		"type": "function"
 	},
 	{
