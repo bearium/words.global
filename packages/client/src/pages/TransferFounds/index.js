@@ -3,11 +3,9 @@ import {
   Button,
   Container,
   Divider,
-  Dropdown,
   Grid,
   Header,
   Input,
-  Label,
   Segment,
 } from 'semantic-ui-react';
 
@@ -44,11 +42,6 @@ class PaymentPool extends Component {
   }
 
   render() {
-    const organizations = [{ key: 'UNHCR', text: 'UNHCR', value: 'hash' }, {
-      key: 'test',
-      text: 'UNHCR2',
-      value: 'hash2',
-    }];
     return (
       <>
         <Segment vertical>
