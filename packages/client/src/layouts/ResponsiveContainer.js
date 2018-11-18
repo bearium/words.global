@@ -62,8 +62,10 @@ class DesktopContainer extends Component {
             </Menu>
           </Segment>
         </Visibility>
+        <Segment className="footer-margin">
         {children}
-        <Segment inverted vertical style={{ padding: '5em 0em' }}>
+        </Segment>
+        <Segment className="footer" inverted vertical>
           <Container>
             <Grid divided inverted stackable>
               <Grid.Row>
@@ -201,10 +203,11 @@ MobileContainer.propTypes = {
 };
 
 const ResponsiveContainer = ({ children, ...props }) => (
-  <div>
+  <div className="wrapper">
     <DesktopContainer {...props}>{children}</DesktopContainer>
     <MobileContainer {...props}>{children}</MobileContainer>
   </div>
+
 );
 
 ResponsiveContainer.propTypes = {

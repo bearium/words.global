@@ -12,3 +12,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.ui.footer.segment {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height:253px;
+	margin-bottom: 0;
+	padding: 25px 0em;
+	height: 160px;
+}
+
+.ui.footer-margin.segment {
+	margin-bottom: 210px;
+}
