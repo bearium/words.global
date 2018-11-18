@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { List, Dimmer, Loader } from 'semantic-ui-react';
+import { Divider, List, Dimmer, Loader } from 'semantic-ui-react';
 import ethw from 'charitydb';
 
 import AddressContext from '../contexts/AddressContext';
@@ -65,6 +65,7 @@ export default class Details extends React.Component {
                 {address}
               </List.Description>
             </List.Item>
+            <Divider hidden />
             <List.Item>
               <List.Header as="strong">
                 Name
@@ -73,6 +74,7 @@ export default class Details extends React.Component {
                 {name || <em>Not entered</em>}
               </List.Description>
             </List.Item>
+            <Divider hidden />
             <List.Item>
               <List.Header as="strong">
                 Full Name
@@ -81,6 +83,7 @@ export default class Details extends React.Component {
                 {fullName || <em>Not entered</em>}
               </List.Description>
             </List.Item>
+            <Divider hidden />
             <List.Item>
               <List.Header as="strong">
                 Type
