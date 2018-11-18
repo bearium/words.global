@@ -1,6 +1,6 @@
 'use strict';
 
-const contractAddress = "0xbbEd422c7d89D6B94e95fd7920dC8fd5AE6Df87D";
+const contractAddress = "0xa8ec30db34e92c10912aa0844566efaa5f2534a7";
 const contractABI = [
 	{
 		"constant": false,
@@ -466,10 +466,10 @@ let EthWrapper = {
 		})
 	},
 
-	donatedFundsOf(refugee) {
+	donatedPayoutsOf(refugee) {
 		assert(loaded, "Not Loaded");
 		return new Promise((resolve, reject) => {
-			theCouncil.donatedFundsOf(refugee, (err, shares) => {
+			theCouncil.donatedPayoutsOf(refugee, (err, shares) => {
 				if (err) {
 					reject(err);
 				} else {
@@ -479,10 +479,10 @@ let EthWrapper = {
 		})
 	},
 
-	spendDonatedFunds(to, amount){
+	spendDonatedPayouts(to, amount){
 		assert(loaded, "Not Loaded");
 		return new Promise((resolve, reject) => {
-			theCouncil.spendDonatedFunds(to, amount, (err, txHash) => {
+			theCouncil.spendDonatedPayouts(to, amount, (err, txHash) => {
 				if (err) {
 					reject(err);
 				} else {
@@ -549,6 +549,31 @@ let EthWrapper = {
 			});
 		})
 	},
+
+	donationsOf(address, charity){
+		assert(loaded, "Not Loaded");
+		return new Promise((resolve, reject) => {
+			theCouncil.donateByName(address, charity, (err, donatedAmount) => {
+				if (err) {
+					reject(err);
+				} else {
+					resolve(donatedAmount);
+				}
+			});
+		})
+	},
+	totalDonationsOf(address){
+		assert(loaded, "Not Loaded");
+		return new Promise((resolve, reject) => {
+			theCouncil.totalDonationsOf(address, (err, donatedAmount) => {
+				if (err) {
+					reject(err);
+				} else {
+					resolve(donatedAmount);
+				}
+			});
+		})
+	}
 }
 
 module.exports = EthWrapper;
