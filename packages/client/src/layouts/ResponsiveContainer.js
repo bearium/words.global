@@ -55,6 +55,8 @@ class DesktopContainer extends Component {
                 </Menu.Item>
                 <Menu.Item as={Link} to="/donate" active={pathname === '/donate'}>Payments</Menu.Item>
                 <Menu.Item as={Link} to="/account" active={pathname === '/account'}>Account</Menu.Item>
+                <Menu.Item as={Link} to="/transfer" active={pathname === '/transfer'}>Transfer</Menu.Item>
+                <Menu.Item as={Link} to="/myFunds" active={pathname === '/myFunds'}>Withdraw</Menu.Item>
                 <Menu.Item position="right">
                 </Menu.Item>
               </Container>
@@ -132,6 +134,8 @@ class MobileContainer extends Component {
             </Menu.Item>
             <Menu.Item as={Link} to="/donate" active={pathname === '/donate'}>Payments</Menu.Item>
             <Menu.Item as={Link} to="/account" active={pathname === '/account'}>Account</Menu.Item>
+            <Menu.Item as={Link} to="/transfer" active={pathname === '/transfer'}>Transfer</Menu.Item>
+            <Menu.Item as={Link} to="/myFunds" active={pathname === '/myFunds'}>Withdraw</Menu.Item>
             <Menu.Item position="right">
             </Menu.Item>
           </Sidebar>

@@ -65,7 +65,7 @@ class PaymentPool extends Component {
               horizontal
               style={{ margin: '3em 0em', textTransform: 'uppercase' }}
             >
-              <p>Donation</p>
+              <p>Withdrawal</p>
             </Divider>
             <Grid columns={2} divided>
               <Grid.Row>
@@ -81,7 +81,7 @@ class PaymentPool extends Component {
                     onChange={this.handleOrgChange}
                     options={organizations}
                     search
-                    placeholder="Select Organization"
+                    placeholder="Select Merchant"
                   />
                 </Grid.Column>
                 <Grid.Column>
@@ -96,7 +96,7 @@ class PaymentPool extends Component {
             <Grid columns={1}>
               <Grid.Row>
                 <Button fluid onClick={this.cryptoRound}>
-                  Donate Now
+                  Withdraw
                 </Button>
               </Grid.Row>
             </Grid>
