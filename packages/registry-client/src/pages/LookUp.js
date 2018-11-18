@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { Button, Divider, Input } from 'semantic-ui-react';
+import { Form, Divider, Input } from 'semantic-ui-react';
 
 export default class LookUp extends React.Component {
   constructor(props) {
@@ -29,24 +29,30 @@ export default class LookUp extends React.Component {
 
     return (
       <>
-        <form onSubmit={this.search}>
-          <Input
+        <Form onSubmit={this.search}>
+          <Form.Field
             fluid
+            required
+            control={Input}
             icon="search"
+            label="Address"
             placeholder="Lookup address"
             size="massive"
             value={term}
-            onInput={({ target: { value } }) => this.setState({ term: value })}
+            onInput={
+              ({ target: { value } }) => this.setState({ term: value })
+            }
           />
           <Divider hidden />
-          <Button
+          <Form.Button
+            color="blue"
             fluid
             type="submit"
             size="massive"
           >
             Look up
-          </Button>
-        </form>
+          </Form.Button>
+        </Form>
       </>
     );
   }

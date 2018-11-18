@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Container, Divider, Header } from 'semantic-ui-react';
+import { Button, Container, Divider, Header, Icon } from 'semantic-ui-react';
 
 import ProfileContext from '../contexts/ProfileContext';
 
@@ -16,8 +16,19 @@ export default class Layout extends React.Component {
       <Container text>
         <Divider hidden />
           <Link to={this.context ? `/${this.context}/edit` : ''}>
-            <Button compact loading={loading} floated="right">
-              Edit
+            <Button
+              basic
+              nimated
+              compact
+              loading={loading}
+              floated="right"
+            >
+              <Button.Content visible>
+                Edit
+              </Button.Content>
+              <Button.Content hidden>
+                <Icon name="arrow right" />
+              </Button.Content>
             </Button>
           </Link>
           <Header as="h1">
