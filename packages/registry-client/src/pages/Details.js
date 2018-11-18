@@ -71,7 +71,7 @@ export default class Details extends React.Component {
                 Address
               </List.Header>
               <List.Description style={{ wordWrap: 'break-word' }}>
-                {profile && profile.address}
+                {address}
               </List.Description>
             </List.Item>
             <Divider hidden />
