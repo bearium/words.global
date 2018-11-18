@@ -11,7 +11,6 @@ import {
 import charityDB from 'charitydb/lib/charityDB';
 import charityFinances from 'charityfinances/lib/charityFinances';
 
-
 class PaymentPool extends Component {
 
   constructor(props) {
@@ -19,6 +18,7 @@ class PaymentPool extends Component {
     this.cryptoRound = this.cryptoRound.bind(this);
     this.handleCadChange = this.handleCadChange.bind(this);
     this.handleOrgChange = this.handleOrgChange.bind(this);
+    this.TransferFunds = this.TransferFunds.bind(this);
     this.state = {
       CAD: '',
       ORG: '',
@@ -27,8 +27,8 @@ class PaymentPool extends Component {
     };
   }
 
-  handleCadChange(text) {
-    this.setState({ CAD: text.value });
+  handleCadChange(data, { name, value }) {
+    this.setState({ CAD: value });
   }
 
   handleOrgChange(event, data) {
@@ -51,6 +51,23 @@ class PaymentPool extends Component {
     }
     return await data.json();
   }
+
+  async TransferFunds() {
+    console.log('transferring funds');
+    const convertion = await this.cryptoRound();
+    const isnum = /^\d+$/.test(this.state.CAD);
+    if (!isnum || this.state.CAD === '0') {
+      this.setState({ numerr: true });
+    }
+
+    if (!this.state.numerr) {
+
+      console.log(this.state.ORG, this.state.CAD);
+      charityFinances.addShares(this.state.ORG, this.state.CAD);
+    }
+    return null;
+  }
+
 
   render() {
     console.log(this.state.totalShares);
@@ -81,16 +98,16 @@ class PaymentPool extends Component {
             <Grid columns={2} divided>
               <Grid.Row>
                 <Grid.Column>
-                  <Input fluid placeholder="Users Key" />
+                  <Input fluid placeholder="Users Key" type="text" value={this.state.ORG} onChange={this.handleOrgChange} />
                 </Grid.Column>
                 <Grid.Column>
-                  <Input labelPosition="right" type="text" placeholder="Shares" fluid onChange={this.handleCadChange} value={this.state.CAD} />
+                  <Input step="1" labelPosition="right" type="number" placeholder="Shares" fluid onChange={this.handleCadChange} value={this.state.CAD} />
                 </Grid.Column>
               </Grid.Row>
             </Grid>
             <Grid columns={1}>
               <Grid.Row>
-                <Button fluid onClick={this.cryptoRound}>
+                <Button fluid onClick={this.TransferFunds}>
                   Transfer
                 </Button>
               </Grid.Row>
