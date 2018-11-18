@@ -19,14 +19,19 @@ export default class Details extends React.Component {
   }
 
   async updateProfile() {
+    console.log('why1');
     if (typeof this.context === 'undefined') {
       return;
     }
 
     const { match: { params: { address } } } = this.props;
 
-    ethw.getOrganization(address)
-      .then(profile => this.setState({ profile }));
+    console.time('why');
+    const profile = await ethw.getOrganization(address);
+    console.timeEnd('why');
+
+    console.log('before setState', profile);
+    this.setState({ profile });
   }
 
   componentDidMount() {
@@ -52,7 +57,6 @@ export default class Details extends React.Component {
       );
     }
     else {
-      console.log(profile);
       content = (
         <>
           {address === this.context && (
