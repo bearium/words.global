@@ -1,0 +1,26 @@
+{
+  "name": "charitydb",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Aritz Beobide-Cardinal <aritz@aritzcracker.ca>",
+  "homepage": "https://github.com/thecouncil/words.global#readme",
+  "license": "ISC",
+  "main": "lib/charityDB.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://ARitz-Cracker@github.com/thecouncil/words.global.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/thecouncil/words.global/issues"
+  }
+}
