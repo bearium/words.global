@@ -12,6 +12,7 @@ import {
   Segment,
 } from 'semantic-ui-react';
 import charityDB from 'charitydb/lib/charityDB';
+import charityFinances from 'charityfinances/lib/charityFinances';
 
 class PaymentPool extends Component {
   constructor(props) {
@@ -49,28 +50,38 @@ class PaymentPool extends Component {
   }
 
   async TransferFunds() {
-    const org = await charityDB.getOrganizationByName(this.state.ORG)
-      .then((response) => {
-        return response;
-      })
-      .catch((err) => {
-        return charityDB.getOrganization(this.state.ORG)
-          .then((response) => {
-            return response;
-          })
-          .catch((err2) => {
-            this.setState({ err: true });
-            return err2;
-          });
-      });
+    const convertion = await this.cryptoRound();
     const isnum = /^\d+$/.test(this.state.CAD);
-    console.log(org);
-    if (!isnum) {
+    if (!isnum || this.state.CAD === '0') {
       this.setState({ numerr: true });
     }
-    if (!isnum && !this.state.err) {
-      console.log('send money');
+
+    if (!this.state.numerr) {
+
+      const eth = this.state.CAD * convertion.ETH;
+      console.log(eth);
+      charityDB.getOrganizationByName(this.state.ORG)
+        .then(() => {
+          return charityFinances.donateByName(this.state.ORG,eth)
+            .catch((err1) => {
+              return err1;
+            });
+        })
+        .catch(() => {
+          return charityDB.getOrganization(this.state.ORG)
+            .then(() => {
+              return charityFinances.donateByName(this.state.ORG,eth)
+                .catch((err1) => {
+                  return err1;
+                });
+            })
+            .catch((err2) => {
+              this.setState({ err: true });
+              return err2;
+            });
+        });
     }
+    return null;
   }
 
   RenderError() {

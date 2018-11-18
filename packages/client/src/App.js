@@ -7,6 +7,7 @@ import {
 import './App.css';
 import 'semantic-ui-css/semantic.min.css';
 import ethwrapper from 'charitydb';
+import ethwrapperTransactions from 'charityfinances';
 import ResponsiveContainer from './layouts/ResponsiveContainer';
 import HomepageLayout from './pages/Home';
 import PaymentPool from './pages/paymentPool';
@@ -19,23 +20,14 @@ function App() {
   const [isLoaded, setLoaded] = useState(false);
   const [isErrored, setErrored] = useState(false);
 
-  if (isErrored) {
-    window.open('https://blog.wetrust.io/how-to-install-and-use-metamask-7210720ca047', '_blank');
-  }
 
   useEffect(() => {
     if (!isLoaded && !isErrored) {
       ethwrapper.load().then(() => setLoaded(true)).catch(setErrored);
+      ethwrapperTransactions.load().then(() => setLoaded(true)).catch(setErrored);
     }
   });
 
-  if (isErrored) {
-    return (
-      <div className="App">
-        Waiting for MetaMask to be installed...
-      </div>
-    );
-}
   return (
     <BrowserRouter>
       <ResponsiveContainer>
