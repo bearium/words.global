@@ -114,7 +114,7 @@ const contractABI = [
 				"type": "uint256"
 			}
 		],
-		"name": "spendDonatedFunds",
+		"name": "spendDonatedPayouts",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -176,7 +176,30 @@ const contractABI = [
 				"type": "address"
 			}
 		],
-		"name": "donatedFundsOf",
+		"name": "donatedPayoutsOf",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "user",
+				"type": "address"
+			},
+			{
+				"name": "charity",
+				"type": "address"
+			}
+		],
+		"name": "donationsOf",
 		"outputs": [
 			{
 				"name": "",
@@ -252,6 +275,25 @@ const contractABI = [
 		"constant": true,
 		"inputs": [
 			{
+				"name": "user",
+				"type": "address"
+			}
+		],
+		"name": "totalDonationsOf",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
 				"name": "charity",
 				"type": "address"
 			}
@@ -267,7 +309,7 @@ const contractABI = [
 		"stateMutability": "view",
 		"type": "function"
 	}
-]
+];
 
 class EthWrapperError extends Error{
 	constructor(msg){
