@@ -1,6 +1,6 @@
 'use strict';
 
-const contractAddress = "0x4482090a2702FDC792B70836e441b2757E791E71";
+const contractAddress = "0xbbEd422c7d89D6B94e95fd7920dC8fd5AE6Df87D";
 const contractABI = [
 	{
 		"constant": false,
