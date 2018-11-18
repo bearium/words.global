@@ -6,10 +6,13 @@ import {
   Dropdown,
   Grid,
   Header,
+  Icon,
   Input,
   Label,
+  Modal,
   Segment,
 } from 'semantic-ui-react';
+import charityDB from 'charitydb/lib/charityDB';
 
 class PaymentPool extends Component {
   constructor(props) {
@@ -17,9 +20,11 @@ class PaymentPool extends Component {
     this.cryptoRound = this.cryptoRound.bind(this);
     this.handleCadChange = this.handleCadChange.bind(this);
     this.handleOrgChange = this.handleOrgChange.bind(this);
+    this.TransferFunds = this.TransferFunds.bind(this);
     this.state = {
       CAD: '',
       ORG: '',
+      err: false,
     };
   }
 
@@ -41,6 +46,19 @@ class PaymentPool extends Component {
       }
     }
     return await data.json();
+  }
+
+  async TransferFunds() {
+    const org = await charityDB.getOrganizationByName(this.state.ORG)
+      .then((response) => {
+        console(response);
+        return null;
+      })
+      .catch((err) => {
+        this.setState({ err: true });
+        return err;
+      });
+    console.log(org);
   }
 
   render() {
@@ -95,13 +113,28 @@ class PaymentPool extends Component {
             </Grid>
             <Grid columns={1}>
               <Grid.Row>
-                <Button fluid onClick={this.cryptoRound}>
+                <Button fluid onClick={this.TransferFunds}>
                   Donate Now
                 </Button>
               </Grid.Row>
             </Grid>
           </Container>
         </Segment>
+        <Modal open={this.state.err} basic size="small">
+          <Header icon="frown" content="OOPS Something Went Wrong!" />
+          <Modal.Content>
+            <p>
+              Unfortunately we were unable to find that charity please
+              checking spelling and or that you entered the correct hash
+            </p>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button color="green" inverted onClick={() => this.setState({ err: false })}>
+              <Icon name="checkmark" />
+              Please try Again
+            </Button>
+          </Modal.Actions>
+        </Modal>
       </>
     );
   }
