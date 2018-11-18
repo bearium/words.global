@@ -13,10 +13,24 @@ export default () => (
     <ProfileProvider>
       <Layout>
         <Switch>
-          <Route exact path="/" render={(p) => <LookUp {...p} />} />
-          <Route exact path="/:address" render={(p) => <Details {...p} />} />
-          <Route exact path="/:address/edit" render={(p) => <Edit {...p} />} />
-          <Route render={() => <p>Not found</p>} />
+          <Route // LookUp page
+            exact
+            path="/"
+            render={(p) => <LookUp {...p} />}
+          />
+          <Route // Details page
+            exact
+            path="/:address"
+            render={(p) => <Details {...p} />}
+          />
+          <Route // Edit page
+            exact
+            path="/:address/edit"
+            render={(p) => <Edit {...p} />}
+          />
+          <Route // Not Found
+            render={() => <p>Not found</p>}
+          />
         </Switch>
       </Layout>
     </ProfileProvider>
