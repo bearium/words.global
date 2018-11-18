@@ -15,7 +15,7 @@ export default class Layout extends React.Component {
     return (
       <Container text>
         <Divider hidden />
-          <Link to={this.context ? `/${this.context}/edit` : ''}>
+          <Link to={this.context ? `/${this.context}` : ''}>
             <Button
               basic
               animated
@@ -24,7 +24,7 @@ export default class Layout extends React.Component {
               floated="right"
             >
               <Button.Content visible>
-                Edit
+                Me
               </Button.Content>
               <Button.Content hidden>
                 <Icon name="arrow right" />
