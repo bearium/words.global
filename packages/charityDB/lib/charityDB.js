@@ -387,9 +387,8 @@ let EthWrapper = {
 						address: result[0],
 						submitter: result[1],
 						name: result[2],
-						fullName: result[3],
-						type: result[4],
-						otherData: result[5]
+						type: result[3],
+						otherData: result[4]
 					});
 				}
 			});
@@ -406,9 +405,8 @@ let EthWrapper = {
 						address: result[0],
 						submitter: result[1],
 						name: result[2],
-						fullName: result[3],
-						type: result[4],
-						otherData: result[5]
+						type: result[3],
+						otherData: result[4]
 					});
 				}
 			});
