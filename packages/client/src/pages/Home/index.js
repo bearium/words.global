@@ -52,7 +52,7 @@ const HomepageLayout = () => (
         </Grid.Row>
         <Grid.Row>
           <Grid.Column textAlign="center">
-            <Button size="huge">Check Them Out</Button>
+            <Button as="a" href="http://www.unhcr.org/en-us/" target="_blank" size="huge">Check Them Out</Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>

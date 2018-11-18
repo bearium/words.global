@@ -10,6 +10,8 @@ import ResponsiveContainer from './layouts/ResponsiveContainer';
 import HomepageLayout from './pages/Home';
 import PaymentPool from './pages/paymentPool';
 import TransactionHistory from './pages/TransactionHistory';
+import TransferFounds from './pages/TransferFounds';
+import Myfunds from './pages/myFunds';
 
 
 class App extends Component {
@@ -21,6 +23,8 @@ class App extends Component {
             <Route exact path="/" component={HomepageLayout} />
             <Route path="/donate" component={PaymentPool} />
             <Route path="/account" component={TransactionHistory} />
+            <Route path="/transfer" component={TransferFounds} />
+            <Route path="/myFunds" component={Myfunds} />
           </Switch>
         </ResponsiveContainer>
       </BrowserRouter>
