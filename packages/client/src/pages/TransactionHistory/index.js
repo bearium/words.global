@@ -13,57 +13,70 @@ import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 class TransactionHistory extends Component {
+  constructor(props) {
+    super(props);
+    this.refugee = 2900000;
+    this.food = 400;
+    this.housing = 300;
+    this.education = 200;
+    this.health = 100;
+    this.total = this.food + this.housing + this.education + this.health;
+    this.refugeeTotalHelp= 100;
+    this.refugeeTotalPercent= ((this.refugeeTotalHelp*100)/this.refugee);
+    this.foodPercent = ((this.food*100)/this.total);
+    this.housingPercent = ((this.housing*100)/this.total);
+    this.educationPercent = ((this.education*100)/this.total);
+    this.healthPercent = ((this.health*100)/this.total);
+  }
   render() {
-    const tempPane = (
+    const totalPane = (
       <Container>
         <Header>
-          Total Donation: $100
+          Total Donation: ${this.total}
         </Header>
-        <Grid columns={2}>
+        <Grid  verticalAlign='middle' columns={2}>
           <Grid.Row>
             <Grid.Column>
               <Label>
                 <Icon name="user" size="large" />
-                You have helped this many people:
+                <span className="font-weight: bolder;">You have helped this many people: </span>
+                <span className="font-weight: lighter;">{this.refugeeTotalHelp}</span>
               </Label>
-            </Grid.Column>
-            <Grid.Column>
-              <p>10</p>
             </Grid.Column>
           </Grid.Row>
         </Grid>
-        <Grid columns={2} style={{ textAlign: 'center' }}>
+        <Grid  verticalAlign='middle' columns={2} style={{ textAlign: 'center' }}>
           <Grid.Row>
             <Grid.Column>
-              <Grid>
+              <Grid  verticalAlign='middle'>
                 <Grid.Row>
                   <Grid.Column width={8}>
                     <div>
                       <CircularProgressbar
-                        percentage={66}
-                        text="66%"
+                        percentage={this.foodPercent}
+                        text={this.foodPercent + "%"}
                       />
                     </div>
                   </Grid.Column>
                   <Grid.Column width={8}>
-                    <p>This is a state about how you helped solve 1% of refugees problems</p>
+                    <p><Label>Food:</Label><br/>{this.foodPercent + "%"} of your donation was used to help with nutritional needs.</p>
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
             </Grid.Column>
             <Grid.Column>
-              <Grid>
+              <Grid  verticalAlign='middle'>
                 <Grid.Row>
                   <Grid.Column width={8}>
                     <div>
                       <CircularProgressbar
-                        percentage={66}
-                        text="66%"
+                        percentage={this.housingPercent}
+                        text={this.housingPercent + "%"}
                       />
                     </div>
                   </Grid.Column>
                   <Grid.Column width={8}>
-                    <p>This is a state about how you helped solve 1% of refugees problems</p>
+                    <p><Label>Housing:</Label><br/>{this.housingPercent + "%"} of your donation was used to help with housing needs.</p>
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
@@ -71,38 +84,43 @@ class TransactionHistory extends Component {
           </Grid.Row>
           <Grid.Row>
             <Grid.Column>
-              <Grid>
+              <Grid  verticalAlign='middle'>
                 <Grid.Row>
                   <Grid.Column width={8}>
                     <div>
                       <CircularProgressbar
-                        percentage={66}
-                        text="66%"
+                        percentage={this.educationPercent}
+                        text={this.educationPercent + "%"}
                       />
                     </div>
                   </Grid.Column>
                   <Grid.Column width={8}>
-                    <p>This is a state about how you helped solve 1% of refugees problems</p>
+                    <p><Label>Education:</Label><br/>{this.educationPercent + "%"} of your donation was used to help with education needs.s</p>
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
             </Grid.Column>
             <Grid.Column>
-              <Grid>
+              <Grid  verticalAlign='middle'>
                 <Grid.Row>
                   <Grid.Column width={8}>
                     <div>
                       <CircularProgressbar
-                        percentage={66}
-                        text="66%"
+                        percentage={this.healthPercent}
+                        text={this.healthPercent + "%"}
                       />
                     </div>
                   </Grid.Column>
                   <Grid.Column width={8}>
-                    <p>This is a state about how you helped solve 1% of refugees problems</p>
+                    <p><Label>Health:</Label><br/>{this.healthPercent + "%"} of your donation was used to help with health and hygiene needs.</p>
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row centered>
+            <Grid.Column width={10}>
+              <p style={{ textAlign: 'center' }}>Your donation helped <b>{this.refugeeTotalPercent}%</b> of the refugees.<br/><b>Thanks for your generous donations!</b></p>
             </Grid.Column>
           </Grid.Row>
         </Grid>
@@ -111,7 +129,7 @@ class TransactionHistory extends Component {
     const foodPane = (
       <Container>
         <Header>
-          Total Donation: $60
+          Total Donation: ${this.food}
         </Header>
         <Grid columns={2}>
           <Grid.Row>
@@ -119,7 +137,7 @@ class TransactionHistory extends Component {
               <Label>
                 <Icon name="user" size="large" />
                 <span className="font-weight: bolder;">You have helped this many people: </span>
-                <span className="font-weight: lighter;">10</span>
+                <span className="font-weight: lighter;">{this.refugeeTotalHelp}</span>
               </Label>
             </Grid.Column>
           </Grid.Row>
@@ -132,15 +150,15 @@ class TransactionHistory extends Component {
                   <Grid.Column width={9}>
                     <div>
                       <CircularProgressbar
-                        percentage={60}
-                        text="60%"
+                        percentage={this.foodPercent}
+                        text={this.foodPercent + "%"}
                       />
                     </div>
                   </Grid.Column>
                 </Grid.Row>
                 <Grid.Row centered>
                   <Grid.Column width={10}>
-                    <p style={{ textAlign: 'center' }}>Thanks for your generous donations!</p>
+                    <p style={{ textAlign: 'center' }}><b>Thanks for your generous donations!</b></p>
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
@@ -152,7 +170,7 @@ class TransactionHistory extends Component {
     const housePane = (
       <Container>
         <Header>
-          Total Donation: $40
+          Total Donation: ${this.housing}
         </Header>
         <Grid columns={2}>
           <Grid.Row>
@@ -160,7 +178,7 @@ class TransactionHistory extends Component {
               <Label>
                 <Icon name="user" size="large" />
                 <span className="font-weight: bolder;">You have helped this many people: </span>
-                <span className="font-weight: lighter;">10</span>
+                <span className="font-weight: lighter;">{this.refugeeTotalHelp}</span>
               </Label>
             </Grid.Column>
           </Grid.Row>
@@ -173,15 +191,97 @@ class TransactionHistory extends Component {
                   <Grid.Column width={9}>
                     <div>
                       <CircularProgressbar
-                        percentage={40}
-                        text="40%"
+                        percentage={this.housingPercent}
+                        text={this.housingPercent + "%"}
                       />
                     </div>
                   </Grid.Column>
                 </Grid.Row>
                 <Grid.Row centered>
                   <Grid.Column width={10}>
-                    <p style={{ textAlign: 'center' }}>Thanks for your generous donations!</p>
+                    <p style={{ textAlign: 'center' }}><b>Thanks for your generous donations!</b></p>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Container>
+    );
+    const educationPane = (
+      <Container>
+        <Header>
+          Total Donation: ${this.education}
+        </Header>
+        <Grid columns={2}>
+          <Grid.Row>
+            <Grid.Column columns={1}>
+              <Label>
+                <Icon name="user" size="large" />
+                <span className="font-weight: bolder;">You have helped this many people: </span>
+                <span className="font-weight: lighter;">{this.refugeeTotalHelp}</span>
+              </Label>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+        <Grid columns={1} style={{ textAlign: 'center' }}>
+          <Grid.Row>
+            <Grid.Column>
+              <Grid>
+                <Grid.Row centered>
+                  <Grid.Column width={9}>
+                    <div>
+                      <CircularProgressbar
+                        percentage={this.educationPercent}
+                        text={this.educationPercent + "%"}
+                      />
+                    </div>
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row centered>
+                  <Grid.Column width={10}>
+                    <p style={{ textAlign: 'center' }}><b>Thanks for your generous donations!</b></p>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Container>
+    );
+    const healthPane = (
+      <Container>
+        <Header>
+          Total Donation: ${this.health}
+        </Header>
+        <Grid columns={2}>
+          <Grid.Row>
+            <Grid.Column columns={1}>
+              <Label>
+                <Icon name="user" size="large" />
+                <span className="font-weight: bolder;">You have helped this many people: </span>
+                <span className="font-weight: lighter;">{this.refugeeTotalHelp}</span>
+              </Label>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+        <Grid columns={1} style={{ textAlign: 'center' }}>
+          <Grid.Row>
+            <Grid.Column>
+              <Grid>
+                <Grid.Row centered>
+                  <Grid.Column width={9}>
+                    <div>
+                      <CircularProgressbar
+                        percentage={this.healthPercent}
+                        text={this.healthPercent + "%"}
+                      />
+                    </div>
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row centered>
+                  <Grid.Column width={10}>
+                    <p style={{ textAlign: 'center' }}><b>Thanks for your generous donations!</b></p>
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
@@ -191,9 +291,11 @@ class TransactionHistory extends Component {
       </Container>
     );
     const panes = [
-      { menuItem: 'Total', render: () => <Tab.Pane>{tempPane}</Tab.Pane> },
+      { menuItem: 'Total', render: () => <Tab.Pane>{totalPane}</Tab.Pane> },
       { menuItem: 'Food', render: () => <Tab.Pane>{foodPane}</Tab.Pane> },
       { menuItem: 'Housing', render: () => <Tab.Pane>{housePane}</Tab.Pane> },
+      { menuItem: 'Education', render: () => <Tab.Pane>{educationPane}</Tab.Pane> },
+      { menuItem: 'Health', render: () => <Tab.Pane>{healthPane}</Tab.Pane> },
     ];
 
     return (
