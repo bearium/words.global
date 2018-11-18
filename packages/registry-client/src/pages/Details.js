@@ -13,6 +13,7 @@ export default class Details extends React.Component {
     super(props);
     this.state = {
       name: '',
+      profile: undefined,
       type: -1,
     };
   }
@@ -24,21 +25,22 @@ export default class Details extends React.Component {
 
     const { match: { params: { address } } } = this.props;
 
-    this.setState({
-      profile: await ethw.getOrganization(address),
-    });
+    ethw.getOrganization(address)
+      .then(profile => this.setState({ profile }));
   }
 
   componentDidMount() {
     this.updateProfile();
   }
 
-  componentDidUpdate() {
-    this.updateProfile();
+  componentDidUpdate(prevState, prevProps) {
+    if (typeof this.state.profile === 'undefined') {
+      this.updateProfile();
+    }
   }
 
   render() {
-    const { name, type } = this.state;
+    const { profile } = this.state;
     const { match: { params: { address } } } = this.props;
 
     let content;
@@ -50,6 +52,7 @@ export default class Details extends React.Component {
       );
     }
     else {
+      console.log(profile);
       content = (
         <>
           {address === this.context && (
@@ -61,7 +64,7 @@ export default class Details extends React.Component {
                 Address
               </List.Header>
               <List.Description style={{ wordWrap: 'break-word' }}>
-                {address}
+                {profile && profile.address}
               </List.Description>
             </List.Item>
             <Divider hidden />
@@ -70,7 +73,7 @@ export default class Details extends React.Component {
                 Name
               </List.Header>
               <List.Description>
-                {name || <em>Not entered</em>}
+                {(profile && profile.name) || <em>Not entered</em>}
               </List.Description>
             </List.Item>
             <Divider hidden />
@@ -79,7 +82,7 @@ export default class Details extends React.Component {
                 Type
               </List.Header>
               <List.Description>
-                {typeToString(type) || <em>Not entered</em>}
+                {(profile && typeToString(profile.type)) || <em>Not entered</em>}
               </List.Description>
             </List.Item>
           </List>
