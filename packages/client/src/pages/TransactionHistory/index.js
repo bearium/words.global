@@ -11,6 +11,8 @@ import {
 } from 'semantic-ui-react';
 import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import charityDB from 'charitydb/lib/charityDB';
+import charityFinances from 'charityfinances/lib/charityFinances';
 
 class TransactionHistory extends Component {
   constructor(props) {
@@ -20,13 +22,19 @@ class TransactionHistory extends Component {
     this.housing = 300;
     this.education = 200;
     this.health = 100;
-    this.total = this.food + this.housing + this.education + this.health;
+    this.total = 1000;
+    //this.state = {total:1000}
     this.refugeeTotalHelp= 100;
     this.refugeeTotalPercent= ((this.refugeeTotalHelp*100)/this.refugee);
     this.foodPercent = ((this.food*100)/this.total);
     this.housingPercent = ((this.housing*100)/this.total);
     this.educationPercent = ((this.education*100)/this.total);
     this.healthPercent = ((this.health*100)/this.total);
+    //const bigNum = charityFinances.getBigNumberConstructor();
+  }
+  async componentDidMount() {
+    const donation = (await charityFinances.totalDonationsOf(charityFinances.getCurrentAccount())).div(1e18).toNumber();
+    // this.setState({total:donation})
   }
   render() {
     const totalPane = (

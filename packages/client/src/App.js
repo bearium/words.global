@@ -17,16 +17,19 @@ import Myfunds from './pages/myFunds';
 import MetaMaskLoading from './pages/MetaMaskLoading';
 
 function App() {
-  const [isLoaded, setLoaded] = useState(false);
+  const [isLoaded1, setLoaded1] = useState(false);
+  const [isLoaded2, setLoaded2] = useState(false);
   const [isErrored, setErrored] = useState(false);
 
 
   useEffect(() => {
     if (!isLoaded && !isErrored) {
-      ethwrapper.load().then(() => setLoaded(true)).catch(setErrored);
-      ethwrapperTransactions.load().then(() => setLoaded(true)).catch(setErrored);
+      ethwrapper.load().then(() => setLoaded1(true)).catch(setErrored);
+      ethwrapperTransactions.load().then(() => setLoaded2(true)).catch(setErrored);
     }
   });
+
+  const isLoaded = isLoaded1 && isLoaded2;
   return (
     <BrowserRouter>
       <ResponsiveContainer>
